@@ -2,6 +2,9 @@ import React from 'react'
 import './App.css'
 import { Accordion } from './components/Accordion'
 import { Rating } from './components/Rating'
+import { OnOff } from './components/OnOff/OnOff'
+import { UncontrolledAccordion } from './components/UncontrolledAccordion'
+import { UncontrolledRating } from './components/UncontrolledRating'
 
 function App() {
 	console.log('app')
@@ -19,6 +22,14 @@ function App() {
 			<Rating value={3} />
 			<Rating value={4} />
 			<Rating value={5} />
+			<OnOff />
+			<OnOff />
+			<OnOff />
+			<OnOff />
+			<UncontrolledAccordion titleValue={'Uncontrolled'} />
+			<UncontrolledAccordion titleValue={'Uncontrolled'} />
+			<UncontrolledRating />
+			<UncontrolledRating />
 		</div>
 	)
 }
