@@ -1,35 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import { Accordion } from './components/Accordion'
-import { Rating } from './components/Rating'
-import { OnOff } from './components/OnOff/OnOff'
+import { Rating, RatingValueType } from './components/Rating'
+import { UncontrolledOnOff } from './components/OnOff/UncontrolledOnOff'
 import { UncontrolledAccordion } from './components/UncontrolledAccordion'
 import { UncontrolledRating } from './components/UncontrolledRating'
+import { OnOff } from './components/OnOff/OnOff'
 
 function App() {
 	console.log('app')
+
+	const [ratingValue, setRatingValue] = useState<RatingValueType>(0)
+	const [accordionCollapsed, setAccordionCollapsed] = useState(true)
+	const [switchOn, setSwitchOn] = useState(false)
+
 	return (
 		<div className='App'>
 			<PageTitle title={'This is APP component'} />
 			Article 1
-			<Rating value={4} />
-			<Accordion titleValue={'Menu'} collapsed={true} />
-			<Accordion titleValue={'Users'} collapsed={false} />
+			<Accordion
+				titleValue={'Menu'}
+				collapsed={accordionCollapsed}
+				callBack={setAccordionCollapsed}
+			/>
+			<Accordion
+				titleValue={'Users'}
+				collapsed={accordionCollapsed}
+				callBack={setAccordionCollapsed}
+			/>
 			Article 2
-			<Rating value={0} />
-			<Rating value={1} />
-			<Rating value={2} />
-			<Rating value={3} />
-			<Rating value={4} />
-			<Rating value={5} />
-			<OnOff />
-			<OnOff />
-			<OnOff />
-			<OnOff />
+			<Rating value={ratingValue} setRatingValue={setRatingValue} />
+			<Rating value={ratingValue} setRatingValue={setRatingValue} />
+			<UncontrolledOnOff />
+			<UncontrolledOnOff />
+			<UncontrolledOnOff />
+			<UncontrolledOnOff />
 			<UncontrolledAccordion titleValue={'Uncontrolled'} />
 			<UncontrolledAccordion titleValue={'Uncontrolled'} />
 			<UncontrolledRating />
 			<UncontrolledRating />
+			<OnOff on={switchOn} setOn={setSwitchOn} />
+			<OnOff on={switchOn} setOn={setSwitchOn} />
 		</div>
 	)
 }
