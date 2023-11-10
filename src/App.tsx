@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
-import { Accordion } from './components/Accordion'
+import { Accordion } from './components/Accordion/Accordion'
 import { Rating, RatingValueType } from './components/Rating'
 import { UncontrolledOnOff } from './components/OnOff/UncontrolledOnOff'
 import { UncontrolledAccordion } from './components/UncontrolledAccordion'
@@ -22,11 +22,15 @@ function App() {
 				titleValue={'Menu'}
 				collapsed={accordionCollapsed}
 				callBack={setAccordionCollapsed}
+				items={[{ title: '', value: '' }]}
+				onClick={() => {}}
 			/>
 			<Accordion
 				titleValue={'Users'}
 				collapsed={accordionCollapsed}
 				callBack={setAccordionCollapsed}
+				items={[{ title: '', value: '' }]}
+				onClick={() => {}}
 			/>
 			Article 2
 			<Rating value={ratingValue} setRatingValue={setRatingValue} />
