@@ -4,18 +4,17 @@ export default {
 	title: 'useMemo'
 }
 
-export const Example1 = () => {
-	const [a, setA] = useState<number>(5)
-	const [b, setB] = useState<number>(4)
+export const DifficultCountingExample = () => {
+	const [a, setA] = useState<number>(3)
+	const [b, setB] = useState<number>(0)
 
-	let resultA = 1
 	let resultB = 1
 
-	resultA = useMemo(() => {
+	const resultA = useMemo(() => {
 		let tempResultA = 1
 		for (let i = 1; i <= a; i++) {
 			let fake = 0
-			while (fake < 1000000) {
+			while (fake < 10000000) {
 				fake++
 				const fakeValue = Math.random()
 			}
@@ -30,8 +29,9 @@ export const Example1 = () => {
 
 	return (
 		<>
-			<input value={a} onChange={(e) => setA(Number(e.currentTarget.value))} />
+			<input value={a} onChange={(e) => setA(+e.currentTarget.value)} />
 			<input value={b} onChange={(e) => setB(+e.currentTarget.value)} />
+			<hr />
 			<div>Result for a: {resultA}</div>
 			<div>Result for b: {resultB}</div>
 		</>
@@ -51,34 +51,30 @@ const UsersSecret = (props: { users: Array<string> }) => {
 
 const Users = React.memo(UsersSecret)
 
-export const Example2 = () => {
+export const HelpsToReactMemo = () => {
+	console.log('HelpsToReactMemo')
 	const [count, setCount] = useState<number>(0)
 	const [users, setUsers] = useState<Array<string>>([
 		'Dimych',
 		'Valera',
 		'Artem'
 	])
+
+	const newArray = useMemo(() => {
+		return users.filter((u) => u.toLowerCase().indexOf('a') > -1)
+	}, [users])
+
 	const addUser = () => {
 		let newUser = 'Sveta ' + new Date().getTime()
 		setUsers([...users, newUser])
 	}
 
-	const newArray1 = useMemo(() => {
-		return users.filter((u) => u.toLowerCase().indexOf('a') > -1)
-	}, [users])
-
-	const newArray2 = useMemo(() => {
-		return users.filter((u) => u.toLowerCase().indexOf('s') > -1)
-	}, [])
-
-	console.log('Example2')
 	return (
 		<>
 			<button onClick={() => setCount(count + 1)}>+</button>
+			<button onClick={() => addUser()}>add user</button>
 			{count}
-			<Users users={newArray1} />
-			<Users users={newArray2} />
-			<button onClick={addUser}>add user</button>
+			<Users users={newArray} />
 		</>
 	)
 }
